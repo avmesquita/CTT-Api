@@ -6,3 +6,7 @@
 
 Docker Hub Image:
 https://hub.docker.com/repository/docker/avmesquita/ctt-api-service
+
+Heroku Published Service:
+https://ctt-api-service.herokuapp.com/
+
