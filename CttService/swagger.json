@@ -1,0 +1,351 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API de Consulta de Código Postal CTT Gratuita",
+    "description": "API de Consulta de Código Postal CTT Gratuita",
+    "license": {
+      "name": "GNU 3.0",
+      "url": "https://opensource.org/licenses/gpl-3.0.html"
+    },
+	"contact": {
+	  "name": "Andre Mesquita",
+	  "url": "https://www.andremesquita.com/",
+	  "email": "andre@avmsistemas.net"
+	}
+  },
+  "basePath": "/api/v1",  
+  "tags": [
+    {
+      "name": "CTT",
+      "description": "Busca de Código Postal",
+      "externalDocs": {
+        "description": "Public Project",
+        "url": "https://www.andremesquita.com/rest-api-service-ctt-correios-gratuito-github-dockerhub/"
+      }
+    }
+  ],
+  "schemes": [
+    "http", "https"
+  ],
+  "consumes": [
+    "application/json",
+    "application/xml"
+  ],
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "paths": {
+    "/distrito/{filter}": {
+      "get": {
+        "tags": [
+          "distrito"
+        ],
+        "summary": "Busca de Distrito",
+        "description": "Retorna o Distrito",
+        "operationId": "distrito",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "path",
+            "description": "Distrito",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "schema": {
+              "$ref": "#/definitions/Distrito"
+            }
+          },
+          "400": {
+            "description": "Verifique sua implementação para utilização"
+          }
+        }
+      }
+    },
+    "/concelho/{filter}": {
+      "get": {
+        "tags": [
+          "concelho"
+        ],
+        "summary": "Busca por Concelho",
+        "description": "Retorna o Concelho",
+        "operationId": "concelho",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "path",
+            "description": "Concelho",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "schema": {
+              "$ref": "#/definitions/Concelho"
+            }
+          },
+          "400": {
+            "description": "Verifique sua implementação para utilização"
+          }
+        }
+      }
+    },
+    "/codigopostal/{filter}": {
+      "get": {
+        "tags": [
+          "codigopostal"
+        ],
+        "summary": "Busca de Codigo Postal",
+        "description": "Retorna os detalhes do Código Postal",
+        "operationId": "codigopostal",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "path",
+            "description": "Código Postal",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "schema": {
+              "$ref": "#/definitions/CodigoPostal"
+            }
+          },
+          "400": {
+            "description": "Verifique sua implementação para utilização"
+          }
+        }
+      }
+    },
+    "/apartado/{filter}": {
+      "get": {
+        "tags": [
+          "apartado"
+        ],
+        "summary": "Busca de Apartado",
+        "description": "Retorna o endereço do Apartado",
+        "operationId": "apartado",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "path",
+            "description": "Apartado",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "schema": {
+              "$ref": "#/definitions/Apartado"
+            }
+          },
+          "400": {
+            "description": "Verifique sua implementação para utilização"
+          }
+        }
+      }
+    }	
+  },
+  "definitions": {
+    "Distrito": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "código sequencial único"
+        },
+        "Codigo": {
+          "type": "string",
+          "description": "Código Interno de Distrito"
+        },
+        "Nome": {
+          "type": "string",
+          "description": "Denominação do Distrito"
+        }
+      },
+      "xml": {
+        "name": "Distrito"
+      }
+    },
+    "Concelho": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "código sequencial único"
+        },
+        "CodigoDistrito": {
+          "type": "string",
+          "description": "Código Interno do Distrito"
+        },		
+        "Codigo": {
+          "type": "string",
+          "description": "Código Interno de Concelho"
+        },
+        "Nome": {
+          "type": "string",
+          "description": "Denominação do Concelho"
+        }
+      },
+      "xml": {
+        "name": "Concelho"
+      }
+    },
+    "Apartado": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "código sequencial único"
+        },
+        "PostalOfficeIdentification": {
+          "type": "string",
+          "description": "Postal Office Identification"
+        },		
+        "FirstPOBox": {
+          "type": "string",
+          "description": "First PO Box"
+        },
+        "LastPOBox": {
+          "type": "string",
+          "description": "Last PO Box"
+        },
+        "PostalCode": {
+          "type": "string",
+          "description": "Postal Code"
+        },
+        "PostalCodeExtension": {
+          "type": "string",
+          "description": "Postal Code Extension"
+        },
+        "PostalName": {
+          "type": "string",
+          "description": "Postal Name"
+        },
+        "PostalCodeSpecial": {
+          "type": "string",
+          "description": "Postal Code Special"
+        },
+        "PostalCodeSpecialExtension": {
+          "type": "string",
+          "description": "Postal Code Special Extension"
+        },
+        "PostalNameSpecial": {
+          "type": "string",
+          "description": "Postal Name Special"
+        }
+      },
+      "xml": {
+        "name": "Apartado"
+      }	  
+	},
+    "CodigoPostal": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "código sequencial único"
+        },
+        "CodigoDistrito": {
+          "type": "string",
+          "description": "Código Interno de Distrito"
+        },
+        "CodigoConcelho": {
+          "type": "string",
+          "description": "Codigo Interno do Concelho"
+        },
+        "CodigoLocalidade": {
+          "type": "string",
+          "description": "Codigo Interno de Localidade"
+        },
+        "NomeLocalidade": {
+          "type": "string",
+          "description": "Denominação de Localidade"
+        },
+        "CodigoArteria": {
+          "type": "string",
+          "description": "Codigo da Arteria"
+        },
+        "ArteriaTipo": {
+          "type": "string",
+          "description": "Tipo de Arteria"
+        },
+        "PrimeiraPreposicao": {
+          "type": "string",
+          "description": "Primeira Preposição"
+        },
+        "ArteriaTitulo": {
+          "type": "string",
+          "description": "Título da Artéria"
+        },
+        "SegundaPreposicao": {
+          "type": "string",
+          "description": "Segunda Preposição"
+        },
+        "ArteriaDesignacao": {
+          "type": "string",
+          "description": "Designação de Arteria"
+        },
+        "ArteriaInformacaoLocalZona": {
+          "type": "string",
+          "description": "Informação de Local/Zona da Arteria"
+        },
+        "Troco": {
+          "type": "string",
+          "description": "Troço"
+        },
+        "NumeroPorta": {
+          "type": "string",
+          "description": "Numero da Porta"
+        },
+        "NomeCliente": {
+          "type": "string",
+          "description": "Nome do Cliente"
+        },
+        "NumeroCodigoPostal": {
+          "type": "string",
+          "description": "Número do Código Postal"
+        },
+        "NumeroExtensaoCodigoPostal": {
+          "type": "string",
+          "description": "Número de Extensão do Código Postal"
+        },
+        "DesignacaoPostal": {
+          "type": "string",
+          "description": "Designação Postal"
+        }
+      },
+      "xml": {
+        "name": "CodigoPostal"
+      }
+    }
+  }
+}

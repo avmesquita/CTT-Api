@@ -1,0 +1,58 @@
+
+---------------------------------------------------------------------
+
+	Formato do ficheiro de apartados todos_aps.txt
+
+---------------------------------------------------------------------
+
+Todas as linhas do ficheiro têm o mesmo formato. Sobre esse formato são colocados 2 tipos de informação:
+- Código postal de Apartados enquadrados num Bloco
+- Código postal de Apartados individualizados
+
+Cada linha tem 9 campos de dados, separados por ponto e vírgula, contendo os
+seguintes valores:
+
+1) Designação: EP
+   Conteúdo:   Identificação do Estabelecimento Postal onde está sediado o apartado. Os primeiros caracteres
+ referem-se ao tipo de EP. Pode ser: 
+	BEC (Balcão Exterior de Correios)
+	CAD (Centro de Apoio à Distribuição)
+	CDP (Centro de Distribuição Postal)
+	EC (Estação de Correios)
+	PC (Posto de Correios)
+
+   Tipo:       Alfa-numérico, sempre preenchido
+
+2) Designação: APA_INI
+   Conteúdo:   Apartado Inicial do Bloco/ Nº de Apartado com código postal individualizado
+   Tipo:       Numérico, sempre preenchido
+
+3) Designação: APA_FIM
+   Conteúdo:   Apartado Final do Bloco
+   Tipo:       Numérico, Se preenchido implica que o registo corresponde ao bloco de apartados [APA_INI,APA_FIM] com 
+Código Postal nos campos CP4_AP, CP3_AP e CPALF_AP. Se Vazio implica que o registo representa o apartado 
+individualizado APA_INI com Código Postal próprio nos campos CP4_APC, CP3_APC e CPALF_APC.
+
+4) Designação: CP4_AP
+   Conteúdo:   CP4 do Apartado de Bloco
+   Tipo:       Alfa-numérico, sempre preenchido se for um apartado de Bloco
+
+5) Designação: CP3_AP
+   Conteúdo:   CP3 do Apartado de Bloco
+   Tipo:       Alfa-numérico, sempre preenchido se for um apartado de Bloco
+
+6) Designação: CPALF_AP
+   Conteúdo:   Designação Postal do Apartado de Bloco
+   Tipo:       Alfa-numérico, sempre preenchido se for um apartado de Bloco
+
+7) Designação: CP4_APC
+   Conteúdo:   CP4 do Apartado com código postal individualizado
+   Tipo:       Alfa-numérico, sempre preenchido se for um apartado com código postal individualizado
+
+8) Designação: CP3_APC
+   Conteúdo:   CP3 do Apartado com código postal individualizado
+   Tipo:       Alfa-numérico, sempre preenchido se for um apartado com código postal individualizado
+
+9) Designação: CPALF_APC
+   Conteúdo:   Designação Postal do Apartado com código postal individualizado
+   Tipo:       Alfa-numérico, sempre preenchido se for um apartado com código postal individualizado
