@@ -15,6 +15,10 @@ namespace convertCsvToSQLite
 
 		static void Main(string[] args)
 		{
+			Console.WriteLine("=========================================");
+			Console.WriteLine("      Conversor de CSV para SQLite       ");
+			Console.WriteLine("=========================================");
+
 			var distritos = LoadDistritos();
 			var concelhos = LoadConcelhos(distritos);
 			var codigosPostais = LoadTodosCP(distritos, concelhos);
@@ -33,6 +37,8 @@ namespace convertCsvToSQLite
 
 			Console.WriteLine("Writing Apartados...");
 			dbService.GravarApartados(apartados);
+
+			Console.WriteLine("=========================================");
 
 			dbService.Dispose();
 

@@ -1,0 +1,49 @@
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Buscar Apartado</h5>
+    </div>
+    <div class="card-body">
+      <input type='text' [(ngModel)]="filtro" placeholder='chave de busca'>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-success" title='"Procurar' (click)="buscarApartado()">Procurar</button>
+    </div>
+  </div>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <div class="card" *ngIf='Apartados && Apartados.length > 0'>
+    <div class="card-header">
+      <h5 class="card-title">Resultado da Busca</h5>
+    </div>
+    <div class="card-body">
+        <table border='0' width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
+          <thead>
+            <tr>
+              <th>PostalOfficeIdentification</th>
+              <th>FirstPOBox</th>
+              <th>LastPOBox</th>
+              <th>PostalCode</th>
+              <th>PostalCodeExtension</th>
+              <th>PostalName</th>
+              <th>PostalCodeSpecial</th>
+              <th>PostalCodeSpecialExtension</th>
+              <th>PostalNameSpecial</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let apartado of Apartados'>
+              <td>{{ apartado.PostalOfficeIdentification }}</td>
+              <td>{{ apartado.FirstPOBox }}</td>
+              <td>{{ apartado.LastPOBox }}</td>
+              <td>{{ apartado.PostalCode }}</td>
+              <td>{{ apartado.PostalCodeExtension }}</td>
+              <td>{{ apartado.PostalName }}</td>
+              <td>{{ apartado.PostalCodeSpecial }}</td>
+              <td>{{ apartado.PostalCodeSpecialExtension }}</td>
+              <td>{{ apartado.PostalNameSpecial }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+   </div>
