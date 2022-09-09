@@ -21,3 +21,14 @@ https://ctt-api-service.herokuapp.com/
 Download dos ficheiros de Codigos Postais e Apartados:<br>
 https://www.ctt.pt/feapl_2/app/restricted/postalCodeSearch/postalCodeDownloadFiles.jspx
 
+
+
+## Donating
+
+My blog and open source projects are result of my passion for software development, but they require a fair amount of my personal time. If you got value from any of the content I create, then I would appreciate your support by [sponsoring me](https://github.com/sponsors/avmesquita) (either monthly or one-time).
+
+## Copyright and License
+
+Copyright © 2022 Andre Mesquita
+
+Licensed under the GNU General Public License v3.0
