@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from './MessageService.service';
-import { Distrito } from './Distrito';
-import { Concelho } from './Concelho';
-import { CodigoPostal } from './CodigoPostal';
-import { Apartado } from './Apartado';
+import { IApartado } from 'src/app/interfaces/apartado.interface';
+import { ICodigoPostal } from 'src/app/interfaces/codigo-portal.interface';
+import { IConcelho } from 'src/app/interfaces/concelho.interface';
+import { IDistrito } from 'src/app/interfaces/distrito.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ constructor(
     try
     {
       const endpoint = this.ServiceURL + '/api/v1/distrito/' + filter;
-      return this.http.get<Distrito[]>(endpoint);
+      return this.http.get<IDistrito[]>(endpoint);
     } catch (e) {
       this.msgService.add(e);
     }
@@ -40,7 +40,7 @@ constructor(
     try
     {
       const endpoint = this.ServiceURL + '/api/v1/concelho/' + filter;
-      return this.http.get<Concelho[]>(endpoint);
+      return this.http.get<IConcelho[]>(endpoint);
     } catch (e) {
       this.msgService.add(e);
     }
@@ -50,7 +50,7 @@ constructor(
     try
     {
       const endpoint = this.ServiceURL + '/api/v1/codigopostal/' + filter;
-      return this.http.get<CodigoPostal[]>(endpoint);
+      return this.http.get<ICodigoPostal[]>(endpoint);
     } catch (e) {
       this.msgService.add(e);
     }
@@ -60,7 +60,7 @@ constructor(
     try
     {
       const endpoint = this.ServiceURL + '/api/v1/apartado/' + filter;
-      return this.http.get<Apartado[]>(endpoint);
+      return this.http.get<IApartado[]>(endpoint);
     } catch (e) {
       this.msgService.add(e);
     }

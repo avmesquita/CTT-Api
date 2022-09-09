@@ -1,22 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { CttService } from '../CttService.service';
-import { CodigoPostal } from '../CodigoPostal';
+import { Component } from '@angular/core';
+import { ICodigoPostal } from 'src/app/interfaces/codigo-portal.interface';
+import { CttService } from 'src/app/services/CttService.service';
 
 @Component({
   selector: 'app-search-codigo-postal',
   templateUrl: './search-codigo-postal.component.html',
   styleUrls: ['./search-codigo-postal.component.css']
 })
-export class SearchCodigoPostalComponent implements OnInit {
+export class SearchCodigoPostalComponent {
 
   filtro: string;
 
-  CodigosPostais: CodigoPostal[];
+  CodigosPostais: ICodigoPostal[];
 
   constructor(private cttService: CttService) { }
-
-  ngOnInit(): void {
-  }
 
   buscarCodigoPostal(): void {
     this.cttService.buscarCodigoPostal(this.filtro)
