@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SearchCttComponent } from './components/search-ctt/search-ctt.component';
 import { SearchDistritoComponent } from './components/search-distrito/search-distrito.component';
 import { SearchConcelhoComponent } from 'src/app/components/search-concelho/search-concelho.component';
 import { SearchApartadoComponent } from 'src/app/components/search-apartado/search-apartado.component';
@@ -15,8 +14,7 @@ import { MessagesComponent } from 'src/app/components/messages/messages.componen
 
 @NgModule({
    declarations: [
-      AppComponent,
-      SearchCttComponent,
+      AppComponent,      
       MessagesComponent,
       SearchDistritoComponent,
       SearchConcelhoComponent,

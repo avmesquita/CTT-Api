@@ -16,9 +16,15 @@ export class SearchCodigoPostalComponent {
   constructor(private cttService: CttService) { }
 
   buscarCodigoPostal(): void {
-    this.cttService.buscarCodigoPostal(this.filtro)
-    .subscribe(data => { this.CodigosPostais = data; },
-              error => { this.CodigosPostais = []; }
+    this.cttService.buscarCodigoPostal(this.filtro).subscribe(
+      (data: any) => { 
+        console.log(data);
+        this.CodigosPostais = data; 
+      },
+      error => { 
+        console.log(error);
+        this.CodigosPostais = []; 
+      }
     );
   }
 }
