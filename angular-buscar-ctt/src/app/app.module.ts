@@ -11,7 +11,7 @@ import { SearchDistritoComponent } from './components/search-distrito/search-dis
 import { SearchConcelhoComponent } from 'src/app/components/search-concelho/search-concelho.component';
 import { SearchApartadoComponent } from 'src/app/components/search-apartado/search-apartado.component';
 import { SearchCodigoPostalComponent } from 'src/app/components/search-codigo-postal/search-codigo-postal.component';
-import { MessagesComponent } from './messages/messages.component';
+import { MessagesComponent } from 'src/app/components/messages/messages.component';
 
 @NgModule({
    declarations: [
