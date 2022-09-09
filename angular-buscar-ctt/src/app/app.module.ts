@@ -1,24 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { SearchCttComponent } from './search-ctt/search-ctt.component';
-import { MessagesComponent } from './messages/messages.component';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchDistritoComponent } from './search-distrito/search-distrito.component';
-import { SearchConcelhoComponent } from './search-concelho/search-concelho.component';
-import { SearchApartadoComponent } from './search-apartado/search-apartado.component';
-import { SearchCodigoPostalComponent } from './search-codigo-postal/search-codigo-postal.component';
-
+import { SearchDistritoComponent } from './components/search-distrito/search-distrito.component';
+import { SearchConcelhoComponent } from 'src/app/components/search-concelho/search-concelho.component';
+import { SearchApartadoComponent } from 'src/app/components/search-apartado/search-apartado.component';
+import { SearchCodigoPostalComponent } from 'src/app/components/search-codigo-postal/search-codigo-postal.component';
+import { MessagesComponent } from 'src/app/components/messages/messages.component';
 
 @NgModule({
    declarations: [
-      AppComponent,
-      SearchCttComponent,
+      AppComponent,      
       MessagesComponent,
       SearchDistritoComponent,
       SearchConcelhoComponent,

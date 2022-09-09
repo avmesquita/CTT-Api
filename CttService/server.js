@@ -3,10 +3,11 @@ const port = process.env.PORT || 10000;
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+
 const knex = require('knex')({
   client: 'sqlite3',
   connection: { filename: './CTTPortugal.db3' },
-  useNullAsDefault: true,
+  useNullAsDefault: true
 });
 
 var swaggerUi = require('swagger-ui-express'),
@@ -70,10 +71,18 @@ app.get('/api/v1/concelho/', (req, res) => {
 app.get('/api/v1/codigopostal/:filter', (req, res) => {
 
 	filter = req.params.filter;
+	cp = filter.split('-')[0]
+	ext = filter.split('-')[1];
+	/*
+	console.log(cp);
+	console.log(ext);
+	*/
 	
-	if (filter != '' && filter != undefined) {
-		list = () =>  knex('CodigoPostal').select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade','CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo','SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona','Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal','DesignacaoPostal')
-					   .orWhere('NumeroCodigoPostal', 'like', '%'+filter+'%')
+	if (filter != '' && filter != undefined && ext != undefined) {
+		list = () =>  knex('CodigoPostal')
+						.select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade','CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo','SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona','Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal','DesignacaoPostal')
+					   	.where('NumeroCodigoPostal', cp)
+					    .andWhere('NumeroExtensaoCodigoPostal', ext)
 					   .limit(10);
 	} else {
 		list = () =>  knex('CodigoPostal')
