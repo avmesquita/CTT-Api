@@ -13,7 +13,8 @@ https://hub.docker.com/repository/docker/avmesquita/ctt-api-service
 Heroku Published Service:<br>
 https://ctt-api-service.herokuapp.com/
 
-
+Self Hosted Angular app:<br>
+https://ctt-app.andremesquita.com/
 
 
 * Resources
