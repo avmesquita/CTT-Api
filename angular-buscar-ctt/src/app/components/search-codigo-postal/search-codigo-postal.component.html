@@ -2,50 +2,47 @@
   <app-messages></app-messages>
 </div>
 
-<div class="card">
-    <div class="card-header">
-      <h5 class="card-title">Buscar Código Postal</h5>
-    </div>
-    <div class="card-body">
+<mat-card class="headerCard mat-elevation-z8">
+  <mat-card-header>    
+    <mat-card-title>Código Postal</mat-card-title>
+    <mat-card-subtitle>Portugal</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="cardContent">
       <input type='text' [(ngModel)]="filtro" placeholder='XXXX-XXX'>
     </div>
-    <div class="card-footer">
-      <button class="btn btn-success" title='"Procurar' (click)="buscarCodigoPostal()">Procurar</button>
-    </div>
-</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" isRoundButton="true" title='"Procurar' (click)="buscarCodigoPostal()">Procurar</button>
+  </mat-card-actions>  
+</mat-card>
 
-<div class="clearfix">&nbsp;</div>
+<app-loading *ngIf="loading | async"></app-loading>
 
-<div class="card" *ngIf='CodigosPostais && CodigosPostais.length > 0'>
-    <div class="card-header">
-      <h5 class="card-title">Resultado da Busca</h5>
-    </div>
-    <div class="card-body">
-
-        <table width='100%' style='border: 2px black; border-spacing: 10px;  border-collapse: separate;'>
-          <thead>
-            <tr>
-              <th>CP</th>
-              <th>EXT</th>
-              <th>Freguesia</th>
-              <th>Concelho</th>
-              <th>Porta</th>
-              <th>Morada</th>              
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor='let codigoPostal of CodigosPostais'>
-              <td>{{ codigoPostal.NumeroCodigoPostal }}</td>
-              <td>{{ codigoPostal.NumeroExtensaoCodigoPostal }}</td>
-              <td>{{ codigoPostal.ArteriaInformacaoLocalZona }}</td>
-              <td>{{ codigoPostal.NomeLocalidade }}</td>
-              <td>{{ codigoPostal.NumeroPorta }}</td>
-              <td>{{ codigoPostal.ArteriaTipo.trim() }}&nbsp;
-                  {{ codigoPostal.PrimeiraPreposicao.trim() }}&nbsp;
-                  {{ codigoPostal.ArteriaTitulo.trim() }}&nbsp;
-                  {{ codigoPostal.ArteriaDesignacao.trim() }}</td>              
-            </tr>
-          </tbody>
-      </table>
-    </div>
+<div id="tblDataSource" class="tblDataSource mat-elevation-z8" *ngIf='(CodigosPostais && CodigosPostais.length > 0)'>
+  <table width='100%' style='border: 2px black; border-spacing: 10px;  border-collapse: separate;'>
+    <thead>
+      <tr>
+        <th>CP</th>
+        <th>EXT</th>
+        <th>Freguesia</th>
+        <th>Concelho</th>
+        <th>Porta</th>
+        <th>Morada</th>              
+      </tr>
+    </thead>
+    <tbody>            
+      <tr *ngFor='let codigoPostal of CodigosPostais'>
+        <td>{{ codigoPostal.NumeroCodigoPostal }}</td>
+        <td>{{ codigoPostal.NumeroExtensaoCodigoPostal }}</td>
+        <td>{{ codigoPostal.ArteriaInformacaoLocalZona }}</td>
+        <td>{{ codigoPostal.NomeLocalidade }}</td>
+        <td>{{ codigoPostal.NumeroPorta }}</td>
+        <td>{{ codigoPostal.ArteriaTipo.trim() }}&nbsp;
+            {{ codigoPostal.PrimeiraPreposicao.trim() }}&nbsp;
+            {{ codigoPostal.ArteriaTitulo.trim() }}&nbsp;
+            {{ codigoPostal.ArteriaDesignacao.trim() }}</td>              
+      </tr>
+    </tbody>
+  </table>
 </div>

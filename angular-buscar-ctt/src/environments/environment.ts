@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:10000'
+  apiUrl: 'https://ctt-api-service.herokuapp.com'
+  //apiUrl: 'http://localhost:10000'
 };
 
 /*

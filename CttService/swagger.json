@@ -10,8 +10,8 @@
     },
 	"contact": {
 	  "name": "Andre Mesquita",
-	  "url": "https://www.andremesquita.com/",
-	  "email": "andre@avmsistemas.net"
+	  "url": "https://andremesquita.com/",
+	  "email": "avmesquita@hotmail.com"
 	}
   },
   "basePath": "/api/v1",  
@@ -21,12 +21,12 @@
       "description": "Busca de Código Postal",
       "externalDocs": {
         "description": "Public Project",
-        "url": "https://www.andremesquita.com/rest-api-service-ctt-correios-gratuito-github-dockerhub/"
+        "url": "https://andremesquita.com/rest-api-service-ctt-correios-gratuito-github-dockerhub/"
       }
     }
   ],
   "schemes": [
-    "http", "https"
+    "https"
   ],
   "consumes": [
     "application/json",

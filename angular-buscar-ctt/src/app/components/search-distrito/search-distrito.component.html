@@ -2,40 +2,36 @@
   <app-messages></app-messages>
 </div>
 
-<div class="card">
-      <div class="card-header">
-        <h5 class="card-title">Buscar Distritos</h5>
-      </div>
-      <div class="card-body">
-        <input type='text' [(ngModel)]="filtro" placeholder='chave de busca'>
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-success" title='"Procurar' (click)="buscarDistrito()">Procurar</button>
-      </div>
-  </div>
-
-  <div class="clearfix">&nbsp;</div>
-
-  <div class="card" *ngIf='Distritos && Distritos.length > 0'>
-    <div class="card-header">
-      <h5 class="card-title">Resultado da Busca</h5>
+<mat-card class="headerCard mat-elevation-z8">
+  <mat-card-header>    
+    <mat-card-title>Distrito</mat-card-title>
+    <mat-card-subtitle>Portugal</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="cardContent">
+      <input type='text' [(ngModel)]="filtro" placeholder='chave de busca'>
     </div>
-    <div class="card-body">
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" isRoundButton="true" title='"Procurar' (click)="buscarDistrito()">Procurar</button>
+  </mat-card-actions>  
+</mat-card>
 
-        <table border='0' width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
-          <thead>
-            <tr>
-              <th>Codigo</th>
-              <th>Denominação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor='let distrito of Distritos'>
-              <td>{{ distrito.Codigo }}</td>
-              <td>{{ distrito.Nome }}</td>
-            </tr>
-          </tbody>
-        </table>
+<app-loading *ngIf="loading | async"></app-loading>
 
-    </div>
-  </div>
+<div class="tblDataSource mat-elevation-z8" *ngIf='Distritos && Distritos.length > 0'>
+  <table width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Denominação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let distrito of Distritos'>
+        <td>{{ distrito.Codigo }}</td>
+        <td>{{ distrito.Nome }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -11,6 +11,11 @@ import { SearchConcelhoComponent } from 'src/app/components/search-concelho/sear
 import { SearchApartadoComponent } from 'src/app/components/search-apartado/search-apartado.component';
 import { SearchCodigoPostalComponent } from 'src/app/components/search-codigo-postal/search-codigo-postal.component';
 import { MessagesComponent } from 'src/app/components/messages/messages.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { LoadingComponent } from './components/loading/loading.component';
+import { AngularMaterialModule } from './modules/angular-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
    declarations: [
@@ -19,14 +24,23 @@ import { MessagesComponent } from 'src/app/components/messages/messages.componen
       SearchDistritoComponent,
       SearchConcelhoComponent,
       SearchApartadoComponent,
-      SearchCodigoPostalComponent
+      SearchCodigoPostalComponent,
+      LoadingComponent
    ],
    imports: [
       BrowserModule,
+      AngularMaterialModule,
+      BrowserAnimationsModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,      
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: environment.production,
+        // Register the ServiceWorker as soon as the application is stable
+        // or after 30 seconds (whichever comes first).
+        registrationStrategy: 'registerWhenStable:30000'
+      })
    ],
    providers: [],
    bootstrap: [

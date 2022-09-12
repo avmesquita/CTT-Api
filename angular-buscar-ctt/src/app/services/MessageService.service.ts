@@ -9,6 +9,9 @@ export class MessageService {
   // tslint:disable-next-line: typedef
   add(message: string) {
     this.messages.push(message);
+    setTimeout( ()=> {
+      this.clear();
+    },5000);
   }
 
   // tslint:disable-next-line: typedef

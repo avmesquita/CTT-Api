@@ -2,40 +2,38 @@
   <app-messages></app-messages>
 </div>
 
-<div class="card">
-    <div class="card-header">
-      <h5 class="card-title">Buscar Concelho</h5>
-    </div>
-    <div class="card-body">
+<mat-card class="headerCard mat-elevation-z8">
+  <mat-card-header>    
+    <mat-card-title>Concelho</mat-card-title>
+    <mat-card-subtitle>Portugal</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="cardContent">
       <input type='text' [(ngModel)]="filtro" placeholder='chave de busca'>
     </div>
-    <div class="card-footer">
-      <button class="btn btn-success" title='"Procurar' (click)="buscarConcelho()">Procurar</button>
-    </div>
-  </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" isRoundButton="true" title='"Procurar' (click)="buscarConcelho()">Procurar</button>
+  </mat-card-actions>  
+</mat-card>
 
-  <div class="clearfix">&nbsp;</div>
+<app-loading *ngIf="loading | async"></app-loading>
 
-  <div class="card" *ngIf='Concelhos && Concelhos.length > 0'>
-    <div class="card-header">
-      <h5 class="card-title">Resultado da Busca</h5>
-    </div>
-    <div class="card-body">
-        <table border='0' width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
-          <thead>
-            <tr>
-              <th>Codigo</th>
-              <th>Distrito</th>
-              <th>Denominação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor='let concelho of Concelhos'>
-              <td>{{ concelho.Codigo }}</td>
-              <td>{{ concelho.CodigoDistrito }}</td>
-              <td>{{ concelho.Nome }}</td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-  </div>
+<div class="tblDataSource mat-elevation-z8" *ngIf='(Concelhos && Concelhos.length > 0)'>
+  <table width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Distrito</th>
+        <th>Denominação</th>
+      </tr>
+    </thead>
+    <tbody>            
+      <tr *ngFor='let concelho of Concelhos'>
+        <td>{{ concelho.Codigo }}</td>
+        <td>{{ concelho.CodigoDistrito }}</td>
+        <td>{{ concelho.Nome }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

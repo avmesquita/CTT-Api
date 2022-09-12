@@ -2,52 +2,50 @@
   <app-messages></app-messages>
 </div>
 
-<div class="card">
-    <div class="card-header">
-      <h5 class="card-title">Buscar Apartado</h5>
-    </div>
-    <div class="card-body">
+<mat-card class="headerCard mat-elevation-z8">
+  <mat-card-header>    
+    <mat-card-title>Apartado</mat-card-title>
+    <mat-card-subtitle>Portugal</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="cardContent">
       <input type='text' [(ngModel)]="filtro" placeholder='chave de busca'>
     </div>
-    <div class="card-footer">
-      <button class="btn btn-success" title='"Procurar' (click)="buscarApartado()">Procurar</button>
-    </div>
-  </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" isRoundButton="true" title='"Procurar' (click)="buscarApartado()">Procurar</button>
+  </mat-card-actions>  
+</mat-card>
 
-  <div class="clearfix">&nbsp;</div>
+<app-loading *ngIf="loading | async"></app-loading>
 
-  <div class="card" *ngIf='Apartados && Apartados.length > 0'>
-    <div class="card-header">
-      <h5 class="card-title">Resultado da Busca</h5>
-    </div>
-    <div class="card-body">
-        <table border='0' width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
-          <thead>
-            <tr>
-              <th>PostalOfficeIdentification</th>
-              <th>FirstPOBox</th>
-              <th>LastPOBox</th>
-              <th>PostalCode</th>
-              <th>PostalCodeExtension</th>
-              <th>PostalName</th>
-              <th>PostalCodeSpecial</th>
-              <th>PostalCodeSpecialExtension</th>
-              <th>PostalNameSpecial</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor='let apartado of Apartados'>
-              <td>{{ apartado.PostalOfficeIdentification }}</td>
-              <td>{{ apartado.FirstPOBox }}</td>
-              <td>{{ apartado.LastPOBox }}</td>
-              <td>{{ apartado.PostalCode }}</td>
-              <td>{{ apartado.PostalCodeExtension }}</td>
-              <td>{{ apartado.PostalName }}</td>
-              <td>{{ apartado.PostalCodeSpecial }}</td>
-              <td>{{ apartado.PostalCodeSpecialExtension }}</td>
-              <td>{{ apartado.PostalNameSpecial }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-   </div>
+<div class="tblDataSource mat-elevation-z8" *ngIf='(Apartados && Apartados.length > 0)'>
+  <table width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
+    <thead>
+      <tr>
+        <th>Postal Office</th>
+        <th>First POBox</th>
+        <th>Last POBox</th>
+        <th>Postal Code</th>
+        <th>Extension</th>
+        <th>Name</th>
+        <th>Code Special</th>
+        <th>Extension</th>
+        <th>Name Special</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let apartado of Apartados'>
+        <td>{{ apartado.PostalOfficeIdentification }}</td>
+        <td>{{ apartado.FirstPOBox }}</td>
+        <td>{{ apartado.LastPOBox }}</td>
+        <td>{{ apartado.PostalCode }}</td>
+        <td>{{ apartado.PostalCodeExtension }}</td>
+        <td>{{ apartado.PostalName }}</td>
+        <td>{{ apartado.PostalCodeSpecial }}</td>
+        <td>{{ apartado.PostalCodeSpecialExtension }}</td>
+        <td>{{ apartado.PostalNameSpecial }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

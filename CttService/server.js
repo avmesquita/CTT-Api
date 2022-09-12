@@ -2,7 +2,6 @@ const port = process.env.PORT || 10000;
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 
 const knex = require('knex')({
   client: 'sqlite3',
@@ -25,10 +24,9 @@ app.get('/api/v1/distrito/:filter', (req, res) => {
 	
 	if (filter != '' && filter != undefined) {
 		list = () =>  knex('Distrito').select('Id','Codigo','Nome')
-	                   .orWhere('Nome', 'like', '%'+filter+'%')
-					   .limit(10);
+	                   .orWhere('Nome', 'like', '%'+filter+'%');
 	} else {
-		list = () =>  knex('Distrito').select('Id','Codigo','Nome').limit(30)
+		list = () =>  knex('Distrito').select('Id','Codigo','Nome')
 	}
 	
 	list()
@@ -37,7 +35,7 @@ app.get('/api/v1/distrito/:filter', (req, res) => {
 
 app.get('/api/v1/distrito/', (req, res) => {
 	
-	list = () =>  knex('Distrito').select('Id','Codigo','Nome').limit(30)
+	list = () =>  knex('Distrito').select('Id','Codigo','Nome')
 	
 	list()
 	.then(data => res.json(data)).catch(console.error);
@@ -50,10 +48,9 @@ app.get('/api/v1/concelho/:filter', (req, res) => {
 
 	if (filter != '' && filter != undefined) {
 		list = () =>  knex('Concelho').select('Id','CodigoDistrito','Codigo','Nome')	   
-					   .orWhere('Nome', 'like', '%'+filter+'%')	 					   
-					   .limit(10);
+					   .orWhere('Nome', 'like', '%'+filter+'%');
 	} else {
-		list = () =>  knex('Concelho').select('Id','CodigoDistrito','Codigo','Nome').limit(400)
+		list = () =>  knex('Concelho').select('Id','CodigoDistrito','Codigo','Nome')
 	}
 	
 	list()
@@ -82,16 +79,14 @@ app.get('/api/v1/codigopostal/:filter', (req, res) => {
 		list = () =>  knex('CodigoPostal')
 						.select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade','CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo','SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona','Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal','DesignacaoPostal')
 					   	.where('NumeroCodigoPostal', cp)
-					    .andWhere('NumeroExtensaoCodigoPostal', ext)
-					   .limit(10);
+					    .andWhere('NumeroExtensaoCodigoPostal', ext);
 	} else {
 		list = () =>  knex('CodigoPostal')
 						  .select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade',
 								  'CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo',
 								  'SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona',
 								  'Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal',
-								  'DesignacaoPostal')
-						  .limit(50);
+								  'DesignacaoPostal').limit(20);
 	}
 	
 	list()
@@ -105,8 +100,7 @@ app.get('/api/v1/codigopostal/', (req, res) => {
 							'CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo',
 							'SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona',
 							'Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal',
-							'DesignacaoPostal')
-					.limit(50);
+							'DesignacaoPostal').limit(20);
 	
 	list()
 	.then(data => res.json(data)).catch(console.error);
@@ -121,14 +115,12 @@ app.get('/api/v1/apartado/:filter', (req, res) => {
 					   .select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
 							   'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
 							   'PostalCodeSpecialExtension','PostalNameSpecial')	   
-					   .orWhere('PostalCode', 'like', '%'+filter+'%')
-					   .limit(10);
+					   .orWhere('PostalCode', 'like', '%'+filter+'%');
 	} else {
 		list = () =>  knex('Apartado')
 						.select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
 								'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
-								'PostalCodeSpecialExtension','PostalNameSpecial')
-						.limit(50)
+								'PostalCodeSpecialExtension','PostalNameSpecial')						
 	}
 	
 	list()
@@ -140,9 +132,7 @@ app.get('/api/v1/apartado/', (req, res) => {
 	list = () =>  knex('Apartado')
 	                .select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
 							'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
-							'PostalCodeSpecialExtension','PostalNameSpecial')
-					.limit(50);
-	
+							'PostalCodeSpecialExtension','PostalNameSpecial')						
 	list()
 	.then(data => res.json(data))
 })
