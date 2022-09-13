@@ -75,11 +75,17 @@ app.get('/api/v1/codigopostal/:filter', (req, res) => {
 	console.log(ext);
 	*/
 	
-	if (filter != '' && filter != undefined && ext != undefined) {
-		list = () =>  knex('CodigoPostal')
-						.select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade','CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo','SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona','Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal','DesignacaoPostal')
-					   	.where('NumeroCodigoPostal', cp)
-					    .andWhere('NumeroExtensaoCodigoPostal', ext);
+	if (filter != '' && filter != undefined) {
+		if (ext != undefined) {
+			list = () =>  knex('CodigoPostal')
+			.select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade','CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo','SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona','Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal','DesignacaoPostal')
+			   .where('NumeroCodigoPostal', cp)
+			.andWhere('NumeroExtensaoCodigoPostal', ext);
+		} else {
+			list = () =>  knex('CodigoPostal')
+			.select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade','CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo','SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona','Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal','DesignacaoPostal')
+			   .where('NumeroCodigoPostal', cp);
+		}
 	} else {
 		list = () =>  knex('CodigoPostal')
 						  .select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade',
