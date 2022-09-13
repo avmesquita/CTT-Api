@@ -1,0 +1,31 @@
+<IfModule !mod_rewrite.c>
+  FallbackResource /index.html
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  RewriteCond %{REQUEST_FILENAME} -s [OR]
+  RewriteCond %{REQUEST_FILENAME} -l [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^.*$ - [NC,L]
+  RewriteRule ^(.*) /index.html [NC,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  FileETag None
+  Header unset ETag
+  Header unset Pragma
+  Header unset Cache-Control
+  Header unset Last-Modified
+  Header set Pragma "no-cache"
+  Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+
+  Header merge Vary Origin
+  SetEnvIf Origin "^(http(s)?://[^/:]*(?::\d{1,5})?)?" REQUEST_ORIGIN=$1
+  Header always append Access-Control-Allow-Origin %{REQUEST_ORIGIN}e env=REQUEST_ORIGIN
+
+  Header always set Access-Control-Allow-Credentials "true"
+  Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE"
+  Header always set Access-Control-Allow-Headers "*"
+  Header always set Access-Control-Expose-Headers "*"
+</IfModule>
