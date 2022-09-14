@@ -19,9 +19,8 @@ export class SearchConcelhoComponent {
               private msgService: MessageService) { }
 
   buscarConcelho(): void {
-    this.loading.next(true);
-    const params = (this.filtro === undefined ? '' : this.filtro );
-    this.cttService.buscarConcelho(params).subscribe(
+    this.loading.next(true);    
+    this.cttService.buscarConcelho(this.filtro).subscribe(
       (data: IConcelho[]) => {
          this.Concelhos = data; 
          this.loading.next(false);

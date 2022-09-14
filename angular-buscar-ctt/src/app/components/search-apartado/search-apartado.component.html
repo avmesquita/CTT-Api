@@ -22,28 +22,31 @@
 <app-loading *ngIf="loading | async"></app-loading>
 
 <div class="tblDataSource mat-elevation-z8" *ngIf='(Apartados && Apartados.length > 0)'>
-  <table width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
-    <thead>
-      <tr>
-        <th>Postal Office</th>
-        <th>First POBox</th>
-        <th>Last POBox</th>
-        <th>Postal Code</th>
-        <th>Extension</th>        
-        <th>Code Special</th>
-        <th>Extension</th>        
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor='let apartado of Apartados'>
-        <td>{{ apartado.PostalOfficeIdentification }}</td>
-        <td>{{ apartado.FirstPOBox }}</td>
-        <td>{{ apartado.LastPOBox }}</td>
-        <td>{{ apartado.PostalCode }}</td>
-        <td>{{ apartado.PostalCodeExtension }}</td>        
-        <td>{{ apartado.PostalCodeSpecial }}</td>
-        <td>{{ apartado.PostalCodeSpecialExtension }}</td>        
-      </tr>
-    </tbody>
-  </table>
+  <p-table #dtCodigosPostais [value]="Apartados" styleClass="p-datatable-gridlines p-datatable-striped" responsiveLayout="scroll"
+           [paginator]="true" [rows]="10" 
+           currentPageReportTemplate="A exibir {first} até {last} de {totalRecords} registos" [rowsPerPageOptions]="[10,25,50,100]"
+           dataKey="Id">
+    <ng-template pTemplate="header">      
+        <tr>
+          <th>Postal Office</th>
+          <th>First POBox</th>
+          <th>Last POBox</th>
+          <th>Postal Code</th>
+          <th>Extension</th>        
+          <th>Code Special</th>
+          <th>Extension</th>        
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-apartado>      
+        <tr>
+          <td>{{ apartado.PostalOfficeIdentification }}</td>
+          <td>{{ apartado.FirstPOBox }}</td>
+          <td>{{ apartado.LastPOBox }}</td>
+          <td>{{ apartado.PostalCode }}</td>
+          <td>{{ apartado.PostalCodeExtension }}</td>        
+          <td>{{ apartado.PostalCodeSpecial }}</td>
+          <td>{{ apartado.PostalCodeSpecialExtension }}</td>        
+          </tr>      
+    </ng-template>
+  </p-table>
 </div>

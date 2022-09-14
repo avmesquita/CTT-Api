@@ -20,9 +20,8 @@ export class SearchDistritoComponent {
               private msgService: MessageService) { }
 
   buscarDistrito(): void {
-    this.loading.next(true);
-    const params = (this.filtro === undefined ? '' : this.filtro );
-    this.cttService.buscarDistrito(params)
+    this.loading.next(true);    
+    this.cttService.buscarDistrito(this.filtro)
         .subscribe( (data: any) => { 
           this.Distritos = data; 
           this.loading.next(false);

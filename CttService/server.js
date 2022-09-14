@@ -13,7 +13,6 @@ var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
 
 var cors = require('cors');
-const { filter } = require('knex-filter');
 const app = express();
 app.use(cors());
 
@@ -22,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/api/v1/distrito/:filter', (req, res) => {
 	
     const filter = req.params.filter;
-	
+		
 	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
 		list = () =>  knex('Distrito').select('Id','Codigo','Nome')
 	                   .orWhere('Nome', 'like', '%'+filter+'%');
@@ -89,11 +88,6 @@ app.get('/api/v1/codigopostal/:filter', (req, res) => {
 	  cp = filter.split('-')[0];
 	  ext = filter.split('-')[1];
 	}
-	/*
-	console.log("filter = ",filter);
-	console.log("cp = ", cp);
-	console.log("ext = ", ext);
-	*/
 
 	if (cp !== undefined && cp !== 'undefined') {
 		if (ext !== undefined && ext !== '') {			

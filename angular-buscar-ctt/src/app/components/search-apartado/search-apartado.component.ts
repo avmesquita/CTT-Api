@@ -21,9 +21,8 @@ export class SearchApartadoComponent {
               private msgService: MessageService) { }
 
   buscarApartado(): void {
-    this.loading.next(true);
-    const params = (this.filtro === undefined ? '' : this.filtro );
-    this.cttService.buscarApartado(params)
+    this.loading.next(true);    
+    this.cttService.buscarApartado(this.filtro)
     .subscribe(
       (data: any) => { 
         this.Apartados = data; 

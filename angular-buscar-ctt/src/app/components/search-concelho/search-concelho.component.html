@@ -22,20 +22,23 @@
 <app-loading *ngIf="loading | async"></app-loading>
 
 <div class="tblDataSource mat-elevation-z8" *ngIf='(Concelhos && Concelhos.length > 0)'>
-  <table width='100%' style='border-spacing: 10px;  border-collapse: separate;'>
-    <thead>
-      <tr>
-        <th>Codigo</th>
-        <th>Distrito</th>
-        <th>Denominação</th>
-      </tr>
-    </thead>
-    <tbody>            
-      <tr *ngFor='let concelho of Concelhos'>
-        <td>{{ concelho.Codigo }}</td>
-        <td>{{ concelho.CodigoDistrito }}</td>
-        <td>{{ concelho.Nome }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <p-table #dtCodigosPostais [value]="Concelhos" styleClass="p-datatable-gridlines p-datatable-striped" responsiveLayout="scroll"
+           [paginator]="true" [rows]="10" 
+           currentPageReportTemplate="A exibir {first} até {last} de {totalRecords} registos" [rowsPerPageOptions]="[10,25,50,100]"
+           dataKey="Id">
+    <ng-template pTemplate="header">      
+        <tr>
+          <th>Codigo</th>
+          <th>Distrito</th>
+          <th>Denominação</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-concelho>      
+        <tr>
+          <td>{{ concelho.Codigo }}</td>
+          <td>{{ concelho.CodigoDistrito }}</td>
+          <td>{{ concelho.Nome }}</td>
+        </tr>      
+    </ng-template>
+  </p-table>
 </div>
