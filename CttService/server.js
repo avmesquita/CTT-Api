@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/api/v1/distrito/:filter', (req, res) => {
 	
-    filter = req.params.filter;
+    const filter = req.params.filter;
 	
 	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
 		list = () =>  knex('Distrito').select('Id','Codigo','Nome')
@@ -36,7 +36,7 @@ app.get('/api/v1/distrito/:filter', (req, res) => {
 
 app.get('/api/v1/concelho/:filter', (req, res) => {
 
-	filter = req.params.filter;
+	const filter = req.params.filter;
 
 	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
 		list = () =>  knex('Concelho').select('Id','CodigoDistrito','Codigo','Nome')	   
@@ -48,6 +48,35 @@ app.get('/api/v1/concelho/:filter', (req, res) => {
 	list()
 	.then(data => res.json(data)).catch(console.error);
 })
+
+app.get('/api/v1/apartado/:filter', (req, res) => {
+
+	const filter = req.params.filter;
+
+	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
+		list = () =>  knex('Apartado')
+					   .select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
+							   'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
+							   'PostalCodeSpecialExtension','PostalNameSpecial')
+					   .where('PostalCode', 'like', '%'+filter+'%')
+					   .orWhere('FirstPOBox', 'like', '%'+filter+'%')
+					   .orWhere('LastPOBox', 'like', '%'+filter+'%')
+					   .orWhere('PostalCode', 'like', '%'+filter+'%')
+					   .orWhere('PostalName', 'like', '%'+filter+'%')
+					   .orWhere('PostalNameSpecial', 'like', '%'+filter+'%');					   
+	} else {
+		list = () =>  knex('Apartado')
+						.select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
+								'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
+								'PostalCodeSpecialExtension','PostalNameSpecial')						
+	}
+	
+	list()
+	.then(data => res.json(data))
+});
+
+
+
 
 app.get('/api/v1/codigopostal/:filter', (req, res) => {
 
@@ -116,44 +145,6 @@ app.get('/api/v1/morada/:filter', (req, res) => {
 	list()
 	.then(data => res.json(data)).catch(console.error);
 })
-
-app.get('/api/v1/apartado/:filter', (req, res) => {
-
-	filter = req.params.filter;
-
-	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
-		list = () =>  knex('Apartado')
-					   .select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
-							   'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
-							   'PostalCodeSpecialExtension','PostalNameSpecial')
-					   .where('PostalCode', 'like', '%'+filter+'%')
-					   .orWhere('FirstPOBox', 'like', '%'+filter+'%')
-					   .orWhere('LastPOBox', 'like', '%'+filter+'%')
-					   .orWhere('PostalCode', 'like', '%'+filter+'%')
-					   .orWhere('PostalName', 'like', '%'+filter+'%')
-					   .orWhere('PostalNameSpecial', 'like', '%'+filter+'%');					   
-	} else {
-		list = () =>  knex('Apartado')
-						.select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
-								'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
-								'PostalCodeSpecialExtension','PostalNameSpecial')						
-	}
-	
-	list()
-	.then(data => res.json(data))
-});
-
-/*
-app.get('/api/v1/apartado/', (req, res) => {
-
-	list = () =>  knex('Apartado')
-	                .select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
-							'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
-							'PostalCodeSpecialExtension','PostalNameSpecial')						
-	list()
-	.then(data => res.json(data))
-})*/
-
 
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

@@ -183,7 +183,7 @@
             "name": "filter",
             "in": "path",
             "description": "Apartado",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
