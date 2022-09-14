@@ -23,7 +23,7 @@ app.get('/api/v1/distrito/:filter', (req, res) => {
 	
     filter = req.params.filter;
 	
-	if (filter != '' && filter != undefined) {
+	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
 		list = () =>  knex('Distrito').select('Id','Codigo','Nome')
 	                   .orWhere('Nome', 'like', '%'+filter+'%');
 	} else {
@@ -34,21 +34,11 @@ app.get('/api/v1/distrito/:filter', (req, res) => {
 	.then(data => res.json(data)).catch(console.error);
 })
 
-/*
-app.get('/api/v1/distrito/', (req, res) => {
-	
-	list = () =>  knex('Distrito').select('Id','Codigo','Nome')
-	
-	list()
-	.then(data => res.json(data)).catch(console.error);
-})*/
-
-
 app.get('/api/v1/concelho/:filter', (req, res) => {
 
 	filter = req.params.filter;
 
-	if (filter != undefined) {
+	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
 		list = () =>  knex('Concelho').select('Id','CodigoDistrito','Codigo','Nome')	   
 					   .orWhere('Nome', 'like', '%'+filter+'%');
 	} else {
@@ -58,15 +48,6 @@ app.get('/api/v1/concelho/:filter', (req, res) => {
 	list()
 	.then(data => res.json(data)).catch(console.error);
 })
-
-/*
-app.get('/api/v1/concelho/', (req, res) => {
-
-    list = () =>  knex('Concelho').select('Id','CodigoDistrito','Codigo','Nome');
-	
-	list()
-	.then(data => res.json(data)).catch(console.error);
-})*/
 
 app.get('/api/v1/codigopostal/:filter', (req, res) => {
 
@@ -136,26 +117,11 @@ app.get('/api/v1/morada/:filter', (req, res) => {
 	.then(data => res.json(data)).catch(console.error);
 })
 
-
-/*
-app.get('/api/v1/codigopostal/', (req, res) => {
-
-	list = () =>  knex('CodigoPostal')
-					.select('Id','CodigoDistrito','CodigoConcelho','CodigoLocalidade','NomeLocalidade',
-							'CodigoArteria','ArteriaTipo','PrimeiraPreposicao','ArteriaTitulo',
-							'SegundaPreposicao','ArteriaDesignacao','ArteriaInformacaoLocalZona',
-							'Troco','NumeroPorta','NomeCliente','NumeroCodigoPostal','NumeroExtensaoCodigoPostal',
-							'DesignacaoPostal').limit(20);
-	
-	list()
-	.then(data => res.json(data)).catch(console.error);
-})*/
-
 app.get('/api/v1/apartado/:filter', (req, res) => {
 
 	filter = req.params.filter;
 
-	if (filter != undefined) {
+	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
 		list = () =>  knex('Apartado')
 					   .select('Id','PostalOfficeIdentification','FirstPOBox','LastPOBox',
 							   'PostalCode','PostalCodeExtension','PostalName','PostalCodeSpecial',
