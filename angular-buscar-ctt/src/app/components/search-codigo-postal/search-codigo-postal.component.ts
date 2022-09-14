@@ -14,6 +14,8 @@ export class SearchCodigoPostalComponent {
   CodigosPostais: ICodigoPostal[] = [];
 
   filtro: string;
+  morada: string;
+  tipoBusca: string = "CP";
 
   loading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -22,16 +24,31 @@ export class SearchCodigoPostalComponent {
 
   buscarCodigoPostal(): void {
     this.loading.next(true);
-    this.cttService.buscarCodigoPostal(this.filtro).subscribe(      
-      (data: any) => {         
-        this.CodigosPostais = data;
-        this.loading.next(false);
-      },
-      error => { 
-        this.msgService.add(error.message ?? error);        
-        this.CodigosPostais = []; 
-        this.loading.next(false);
-      }
-    );
+
+    if (this.tipoBusca == "CP") {
+      this.cttService.buscarCodigoPostal(this.filtro).subscribe(      
+        (data: any) => {         
+          this.CodigosPostais = data;
+          this.loading.next(false);
+        },
+        error => { 
+          this.msgService.add(error.message ?? error);        
+          this.CodigosPostais = []; 
+          this.loading.next(false);
+        }
+      );
+    } else {
+      this.cttService.buscarMorada(this.morada).subscribe(      
+        (data: any) => {         
+          this.CodigosPostais = data;
+          this.loading.next(false);
+        },
+        error => { 
+          this.msgService.add(error.message ?? error);        
+          this.CodigosPostais = []; 
+          this.loading.next(false);
+        }
+      );
+    }
   }
 }

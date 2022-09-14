@@ -9,11 +9,13 @@
   </mat-card-header>
   <mat-card-content>
     <div class="cardContent">
-      <input type='text' [(ngModel)]="filtro" placeholder='chave de busca'>
+      <input pInputText type='text' [(ngModel)]="filtro" placeholder='chave de busca'>
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="accent" isRoundButton="true" title='"Procurar' (click)="buscarApartado()">Procurar</button>
+    <div style="text-align: right;">
+      <button mat-raised-button color="accent" isRoundButton="true" title='"Procurar' (click)="buscarApartado()">Procurar</button>
+    </div>
   </mat-card-actions>  
 </mat-card>
 
@@ -27,11 +29,9 @@
         <th>First POBox</th>
         <th>Last POBox</th>
         <th>Postal Code</th>
-        <th>Extension</th>
-        <th>Name</th>
+        <th>Extension</th>        
         <th>Code Special</th>
-        <th>Extension</th>
-        <th>Name Special</th>
+        <th>Extension</th>        
       </tr>
     </thead>
     <tbody>
@@ -40,11 +40,9 @@
         <td>{{ apartado.FirstPOBox }}</td>
         <td>{{ apartado.LastPOBox }}</td>
         <td>{{ apartado.PostalCode }}</td>
-        <td>{{ apartado.PostalCodeExtension }}</td>
-        <td>{{ apartado.PostalName }}</td>
+        <td>{{ apartado.PostalCodeExtension }}</td>        
         <td>{{ apartado.PostalCodeSpecial }}</td>
-        <td>{{ apartado.PostalCodeSpecialExtension }}</td>
-        <td>{{ apartado.PostalNameSpecial }}</td>
+        <td>{{ apartado.PostalCodeSpecialExtension }}</td>        
       </tr>
     </tbody>
   </table>

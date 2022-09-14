@@ -60,4 +60,15 @@ constructor(
       this.msgService.add(e);
     }
   }
+
+  buscarMorada(filter: string): any {
+    try
+    {
+      const endpoint = environment.apiUrl + '/api/v1/morada/' + filter;
+      return this.http.get<ICodigoPostal[]>(endpoint);
+    } catch (e) {
+      this.msgService.add(e);
+    }
+  }
+
 }

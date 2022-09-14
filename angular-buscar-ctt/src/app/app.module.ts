@@ -1,21 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { SearchDistritoComponent } from './components/search-distrito/search-distrito.component';
+import { SearchDistritoComponent } from 'src/app/components/search-distrito/search-distrito.component';
 import { SearchConcelhoComponent } from 'src/app/components/search-concelho/search-concelho.component';
 import { SearchApartadoComponent } from 'src/app/components/search-apartado/search-apartado.component';
 import { SearchCodigoPostalComponent } from 'src/app/components/search-codigo-postal/search-codigo-postal.component';
 import { MessagesComponent } from 'src/app/components/messages/messages.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { LoadingComponent } from './components/loading/loading.component';
-import { AngularMaterialModule } from './modules/angular-material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingComponent } from 'src/app/components/loading/loading.component';
+
+import { AngularMaterialModule } from 'src/app/modules/angular-material.module';
+import { PrimeNGModule } from 'src/app/modules/primeng.module';
 
 @NgModule({
    declarations: [
@@ -30,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    imports: [
       BrowserModule,
       AngularMaterialModule,
+      PrimeNGModule,
       BrowserAnimationsModule,
       AppRoutingModule,
       HttpClientModule,

@@ -26,15 +26,13 @@
     }
   ],
   "schemes": [
-    "https"
+    "http", "https"
   ],
   "consumes": [
-    "application/json",
-    "application/xml"
+    "application/json"
   ],
   "produces": [
-    "application/json",
-    "application/xml"
+    "application/json"    
   ],
   "paths": {
     "/distrito/{filter}": {
@@ -53,7 +51,7 @@
             "name": "filter",
             "in": "path",
             "description": "Distrito",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
@@ -86,7 +84,7 @@
             "name": "filter",
             "in": "path",
             "description": "Concelho",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
@@ -119,7 +117,40 @@
             "name": "filter",
             "in": "path",
             "description": "Código Postal",
-            "required": true,
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "schema": {
+              "$ref": "#/definitions/CodigoPostal"
+            }
+          },
+          "400": {
+            "description": "Verifique sua implementação para utilização"
+          }
+        }
+      }
+    },
+    "/morada/{filter}": {
+      "get": {
+        "tags": [
+          "morada"
+        ],
+        "summary": "Busca de Morada",
+        "description": "Retorna os detalhes do Código Postal da Morada",
+        "operationId": "morada",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "path",
+            "description": "Morada",
+            "required": false,
             "type": "string"
           }
         ],
