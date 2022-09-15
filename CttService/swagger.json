@@ -242,6 +242,10 @@
         "Nome": {
           "type": "string",
           "description": "Denominação do Concelho"
+        },
+        "NomeDistrito": {
+          "type": "string",
+          "description": "Denominação do Distrito"
         }
       },
       "xml": {
@@ -372,6 +376,14 @@
         "DesignacaoPostal": {
           "type": "string",
           "description": "Designação Postal"
+        },
+        "NomeDistrito": {
+          "type": "string",
+          "description": "Denominação do Distrito"
+        },
+        "NomeConcelho": {
+          "type": "string",
+          "description": "Denominação do Concelho"
         }
       },
       "xml": {
