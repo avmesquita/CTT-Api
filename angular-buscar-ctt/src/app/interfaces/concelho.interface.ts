@@ -3,5 +3,6 @@ export interface IConcelho {
     Codigo: string;
     CodigoDistrito: string;
     Nome: string;  
+    NomeDistrito: string;
 }
   

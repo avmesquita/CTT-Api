@@ -13,13 +13,19 @@ var swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
 
 var cors = require('cors');
-const { on } = require('nodemon');
 const app = express();
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/api/v1/distrito/:filter', (req, res) => {
+
+	/*
+	const token = req.headers['x-access-token'];
+	if (!token) {
+		console.log("token de distrito não informado");
+		return res.status(401).send({ auth: false, message: 'No token provided.' })
+	}*/
 	
     const filter = req.params.filter;
 		
@@ -34,28 +40,14 @@ app.get('/api/v1/distrito/:filter', (req, res) => {
 	.then(data => res.json(data)).catch(console.error);
 })
 
-// USING KNEX RAW TO EXECUTE A QUERY
-/*
 app.get('/api/v1/concelho/:filter', (req, res) => {
 
-	const filter = req.params.filter;
-	const queryJoin = "SELECT CNCLH.Id, CNCLH.CodigoDistrito, CNCLH.Codigo, CNCLH.Nome, DSTRT.Nome as Distrito " +
-					  "FROM Concelho CNCLH " +
-					  "       INNER JOIN Distrito DSTRT "
-					  "         ON DSTRT.Codigo = CNCLH.CodigoDistrito ";
-
-	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
-		queryJoin = queryJoin + "WHERE Nome like '%" + filter + "%' ";
-	}
-	list = () => knex.raw(queryJoin);
-	
-	list()
-	.then(data => res.json(data)).catch(console.error);
-})
-*/
-
-// USING KNEX STRUCTURE (TOO FASTER THAN EXECUTE A QUERY)
-app.get('/api/v1/concelho/:filter', (req, res) => {
+	/*
+	const token = req.headers['x-access-token'];
+	if (!token) {
+		console.log("token de concelho não informado");
+		return res.status(401).send({ auth: false, message: 'No token provided.' })
+	}*/
 
 	const filter = req.params.filter;
 
@@ -63,7 +55,7 @@ app.get('/api/v1/concelho/:filter', (req, res) => {
 		list = () =>  knex('Concelho')
 					   .innerJoin("Distrito","Distrito.Codigo","Concelho.CodigoDistrito")
 					   .select('Concelho.Id','Concelho.CodigoDistrito','Concelho.Codigo','Concelho.Nome', 'Distrito.Nome as NomeDistrito')	   						
-					   .orWhere('Nome', 'like', '%'+filter+'%');
+					   .orWhere('Concelho.Nome', 'like', '%'+filter+'%');
 	} else {
 		list = () =>  knex('Concelho')
 					   .innerJoin("Distrito","Distrito.Codigo","Concelho.CodigoDistrito")	
@@ -76,6 +68,13 @@ app.get('/api/v1/concelho/:filter', (req, res) => {
 
 app.get('/api/v1/apartado/:filter', (req, res) => {
 
+	/*
+	const token = req.headers['x-access-token'];
+	if (!token) {
+		console.log("token de apartado não informado");
+		return res.status(401).send({ auth: false, message: 'No token provided.' })
+	}*/
+
 	const filter = req.params.filter;
 
 	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {
@@ -85,6 +84,7 @@ app.get('/api/v1/apartado/:filter', (req, res) => {
 							   'PostalCodeSpecialExtension','PostalNameSpecial')
 					   	.from('Apartado')
 					   	.where('PostalCode', 'like', '%'+filter+'%')
+						.orWhere('PostalOfficeIdentification', 'like', '%'+filter+'%')
 					   	.orWhere('FirstPOBox', 'like', '%'+filter+'%')
 					   	.orWhere('LastPOBox', 'like', '%'+filter+'%')
 					   	.orWhere('PostalCode', 'like', '%'+filter+'%')
@@ -103,6 +103,13 @@ app.get('/api/v1/apartado/:filter', (req, res) => {
 });
 
 app.get('/api/v1/codigopostal/:filter', (req, res) => {
+
+	/*
+	const token = req.headers['x-access-token'];
+	if (!token) {
+		console.log("token de codigo postal não informado");
+		return res.status(401).send({ auth: false, message: 'No token provided.' })
+	}*/
 
 	const filter = req.params.filter;
 
@@ -170,6 +177,13 @@ app.get('/api/v1/codigopostal/:filter', (req, res) => {
 
 app.get('/api/v1/morada/:filter', (req, res) => {
 
+	/*
+	const token = req.headers['x-access-token'];
+	if (!token) {
+		console.log("token de morada não informado");
+		return res.status(401).send({ auth: false, message: 'No token provided.' })
+	}*/
+
 	const filter = req.params.filter;
 
 	if (filter !== '' && filter !== undefined && filter !== 'undefined' && filter !== {filter} && filter !== '{filter}') {		
@@ -191,7 +205,7 @@ app.get('/api/v1/morada/:filter', (req, res) => {
 			.orWhere('CodigoPostal.ArteriaDesignacao', 'like', '%'+filter+'%')			
 			.orWhere('CodigoPostal.ArteriaTipo', 'like', '%'+filter+'%')
 			.orWhere('CodigoPostal.NomeCliente', 'like', '%'+filter+'%')
-			.orWhere('CodigoPostal.DesignacaoPostal', 'like', '%'+filter+'%')
+			.orWhere('CodigoPostal.DesignacaoPostal', 'like', '%'+filter+'%')			
 			.orWhere('CodigoPostal.ArteriaInformacaoLocalZona', 'like', '%'+filter+'%');					   
 	} else {				
 		list = () =>  knex

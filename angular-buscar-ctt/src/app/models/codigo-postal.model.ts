@@ -19,6 +19,8 @@ export class CodigoPostal implements ICodigoPostal {
   NumeroCodigoPostal: string;
   NumeroExtensaoCodigoPostal: string;
   DesignacaoPostal: string;
+  NomeDistrito: string;
+  NomeConcelho: string;
 
   constructor() {
     this.Id = 0;
@@ -39,5 +41,7 @@ export class CodigoPostal implements ICodigoPostal {
     this.NumeroCodigoPostal = '';
     this.NumeroExtensaoCodigoPostal = '';
     this.DesignacaoPostal = '';
+    this.NomeConcelho = '';
+    this.NomeDistrito = '';
   }
 }

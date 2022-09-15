@@ -5,11 +5,13 @@ export class Concelho implements IConcelho {
   Codigo: string;
   CodigoDistrito: string;
   Nome: string;
+  NomeDistrito: string;
 
   constructor() {
     this.Id = 0;
     this.Codigo = '';
     this.CodigoDistrito = '';
-    this.Nome = '';  
+    this.Nome = ''; 
+    this.NomeDistrito = '';
   }
 }

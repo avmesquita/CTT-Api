@@ -36,12 +36,13 @@
            dataKey="Id">
     <ng-template pTemplate="header">      
         <tr>
-            <th  >CP</th>
-            <th  >EXT</th>
-            <th  >Morada</th>
-            <th  >Porta</th>
-            <th  >Freguesia</th>
-            <th  >Concelho</th>            
+            <th>CP</th>
+            <th>EXT</th>
+            <th>Morada</th>
+            <th>Porta</th>
+            <th>Freguesia</th>
+            <th>Concelho</th>            
+            <th>Distrito</th> 
         </tr>      
     </ng-template>
     <ng-template pTemplate="body" let-codigoPostal>      
@@ -53,8 +54,9 @@
               {{ codigoPostal.ArteriaTitulo.trim() }}
               {{ codigoPostal.ArteriaDesignacao.trim() }}</td>
           <td style="height: 2rem;">{{ codigoPostal.NumeroPorta }}</td>
-          <td style="height: 2rem;">{{ codigoPostal.ArteriaInformacaoLocalZona }}</td>
           <td style="height: 2rem;">{{ codigoPostal.NomeLocalidade }}</td>
+          <td style="height: 2rem;">{{ codigoPostal.NomeConcelho }}</td>
+          <td style="height: 2rem;">{{ codigoPostal.NomeDistrito }}</td>
         </tr>      
     </ng-template>
   </p-table>

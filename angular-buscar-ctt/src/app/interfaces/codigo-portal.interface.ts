@@ -17,4 +17,6 @@ export interface ICodigoPostal {
     NumeroCodigoPostal: string;
     NumeroExtensaoCodigoPostal: string;
     DesignacaoPostal: string;  
+    NomeConcelho: string;
+    NomeDistrito: string;
 }

@@ -4,4 +4,4 @@ services:
     image: node:alpine
     ports:
       - 10000:10000
-    command: npm run dev
+    command: npm start

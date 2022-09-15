@@ -1,13 +1,13 @@
 {
-  "name": "node.CEP",
+  "name": "node-CTT",
   "version": "1.0.0",
-  "description": "CEP REST API Service",
+  "description": "CTT REST API Service",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "author": "Andre Mesquita",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
